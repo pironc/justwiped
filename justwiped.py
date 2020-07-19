@@ -54,7 +54,11 @@ async def on_ready():
             current_time = time.strftime("%H:%M:%S", t)
             print("[", current_time, "] (curserver != oldserver) Old server : ", oldserver.partition("\n")[0])
             print("[", current_time, "] (curserver != oldserver) New server : ", curserver.partition("\n")[0])
-            await channel.send("```Nouvau Serveur : {}``````Since : {}```".format(curserver, wipe_time.text.strip().partition("\n")[0]))
+
+            # The time is a little buggy right now, bear with me. I'll try to find out how to convert all of this to an actual time
+            # (I still think it's useless because it's the latest wiped server, so it should be
+            # under a minute but still useful to know how to work with timezones in python)
+            await channel.send("```New Server : {}``````Since : {}```".format(curserver, wipe_time.text.strip().partition("\n")[0]))
         time.sleep(10)
 
 # You will need to have a bot and its token, then just simply put it in the quotes
