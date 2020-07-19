@@ -8,3 +8,15 @@ You will also need to create a bot on the Discord Developer website (https://dis
 I made this bot to be able to know when the servers wiped according to my needs (for example duos, trios, 20+ players only, bp wiped or not, etc...). You can simply filter the server on the website, copy the link and paste it in the "url=..." area in the code.
 
 I guess that's it. Just run it on a server so it will work indefinitly and notify you every time a server is available.
+
+Current status :
+
+- Working fine
+- I will work on the "BP WIPE" text showing at the end of a BP wiped server, maybe hiding it or showing it on another line
+- The date & time are not very readable, I will try to edit them or just remove them as it's quite useless in my opinion
+- I will try to make the bot running for everyone, and be able to edit the channel from the bot itself (via commands) as well as a custom just-wiped link for custom filters according to other people, and to make sense I will share the link so people will be able to invite the bot to their servers and receive all of the informations. I'm not 100% sure how to do that as it probably needs a database to store every single channel ID, so maybe it will not work with channel IDs, but I don't know how yet.
+
+
+# Remember, it's a WIP!!!
+
+thanks
