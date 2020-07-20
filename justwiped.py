@@ -39,6 +39,7 @@ async def on_ready():
     
         curserver = soup.find("div", attrs={"class": "servers"})
         players = soup.find("div", attrs={"class": "info i-player"}).find("div", attrs={"class": "value"})
+        wipetime = soup.find("div", attrs={"class": "info i-last-wipe"}).find("div", attrs={"class": "value"}).text[13:18]
 
         t = time.localtime()
         current_time = time.strftime("%H:%M:%S", t)
@@ -55,7 +56,7 @@ async def on_ready():
             current_time = time.strftime("%H:%M:%S", t)
             print("[", current_time, "] (curserver != oldserver) Old server : ", oldserver.partition("\n")[0])
             print("[", current_time, "] (curserver != oldserver) New server : ", curserver.partition("\n")[0])
-            await channel.send("```Latest wipe : {}``````Player(s) : {}```".format(re.sub('BP Wipe', '', curserver), players.text.strip().partition("\n")[0]))
+            await channel.send("```Latest wipe : {}``````Player(s) : {}\t|\tWipe time : {}```".format(re.sub('BP Wipe', '', curserver), players.text.strip().partition("\n")[0], wipetime))
         time.sleep(30)
 
 # You will need to have a bot and its token, then just simply put it in the quotes
