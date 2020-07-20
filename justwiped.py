@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 from datetime import datetime
+import re
 
 client = commands.Bot(command_prefix = '/')
 client.remove_command("help")
@@ -14,7 +15,7 @@ async def on_ready():
     print("The bot is ready")
 
     # Checking what channel to send the message to
-    channel = client.get_channel(Your channel ID)
+    channel = client.get_channel(your channel ID)
 
     # Oldserver and curserver are compared to know if a new server has wiped. Some print functions
     # are just used for the debugging, however you can remove them if you don't want to have them running in your terminal.
@@ -22,7 +23,7 @@ async def on_ready():
     # You can also remove the 7th line (datetime, not time as it's used for the sleep method!!)
     # since it's used to print the current time with the current and old server in your terminal.
 
-    oldserver = "none"
+    oldserver = "n/a"
 
     # This while loop is used to check every X seconds (just modify the time.sleep() lines) in order to loop the wipe checker
     while (1):
@@ -37,7 +38,7 @@ async def on_ready():
         soup = BeautifulSoup(html_content, "lxml")
     
         curserver = soup.find("div", attrs={"class": "servers"})
-        wipe_time = soup.find("div", attrs={"class": "value"})
+        players = soup.find("div", attrs={"class": "info i-player"}).find("div", attrs={"class": "value"})
 
         t = time.localtime()
         current_time = time.strftime("%H:%M:%S", t)
@@ -54,12 +55,8 @@ async def on_ready():
             current_time = time.strftime("%H:%M:%S", t)
             print("[", current_time, "] (curserver != oldserver) Old server : ", oldserver.partition("\n")[0])
             print("[", current_time, "] (curserver != oldserver) New server : ", curserver.partition("\n")[0])
-
-            # The time is a little buggy right now, bear with me. I'll try to find out how to convert all of this to an actual time
-            # (I still think it's useless because it's the latest wiped server, so it should be
-            # under a minute but still useful to know how to work with timezones in python)
-            await channel.send("```New Server : {}``````Since : {}```".format(curserver, wipe_time.text.strip().partition("\n")[0]))
-        time.sleep(10)
+            await channel.send("```Latest wipe : {}``````Player(s) : {}```".format(re.sub('BP Wipe', '', curserver), players.text.strip().partition("\n")[0]))
+        time.sleep(30)
 
 # You will need to have a bot and its token, then just simply put it in the quotes
 client.run('your bot token')
