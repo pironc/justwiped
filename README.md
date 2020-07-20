@@ -13,7 +13,10 @@ Current status :
 
 - Working fine
 - I will work on the "BP WIPE" text showing at the end of a BP wiped server, maybe hiding it or showing it on another line
-- The date & time are not very readable, I will try to edit them or just remove them as it's quite useless in my opinion
+
+- ~~The date & time are not very readable, I will try to edit them or just remove them as it's quite useless in my opinion~~
+- The date and time is not that bad of an idea as the refresh time can vary from the filters that you want the bot to look for. Actually, the only time zone is UTC+2 (CET/CEST). I will try to see how I can include all of the timezones to match anyone's location.
+
 - I will try to make the bot running for everyone, and be able to edit the channel from the bot itself (via commands) as well as a custom just-wiped link for custom filters according to other people, and to make sense I will share the link so people will be able to invite the bot to their servers and receive all of the informations. I'm not 100% sure how to do that as it probably needs a database to store every single channel ID, so maybe it will not work with channel IDs, but I don't know how yet.
 
 
